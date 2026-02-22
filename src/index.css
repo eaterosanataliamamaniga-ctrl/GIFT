@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&family=DotGothic16&family=Space+Grotesk:wght@300;400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-pixel: "VT323", monospace;
+  --font-dot: "DotGothic16", sans-serif;
+  --font-sans: "Space Grotesk", sans-serif;
+  
+  --color-ut-red: #ff0000;
+  --color-ut-orange: #ff8000;
+  --color-ut-yellow: #ffff00;
+  --color-ut-green: #00ff00;
+  --color-ut-cyan: #00f2ff;
+  --color-ut-blue: #0000ff;
+  --color-ut-purple: #9d00ff;
+  --color-ut-pink: #ff007f;
+}
+
+@layer base {
+  body {
+    @apply bg-black text-white overflow-hidden cursor-default;
+    font-family: var(--font-pixel);
+  }
+
+  /* Glitch Effect */
+  .glitch-overlay {
+    @apply fixed inset-0 pointer-events-none z-50;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+    background-size: 100% 3px, 3px 100%;
+  }
+}
+
+@layer components {
+  .rpg-border {
+    @apply border-4 border-white bg-black shadow-[0_0_0_4px_black,0_0_0_8px_white];
+  }
+
+  .menu-btn {
+    @apply flex items-center gap-4 px-6 py-3 border-4 border-[#555] transition-all duration-200 uppercase font-bold text-2xl tracking-widest;
+    image-rendering: pixelated;
+  }
+
+  .menu-btn:hover, .menu-btn.active {
+    @apply border-ut-orange scale-105;
+    color: var(--color-ut-orange);
+  }
+
+  .pixel-img {
+    image-rendering: pixelated;
+  }
+
+  .typewriter-cursor::after {
+    content: '_';
+    @apply animate-pulse;
+  }
+
+  .pixel-heart {
+    @apply w-4 h-4 bg-ut-red relative inline-block mx-1;
+    clip-path: polygon(0 25%, 25% 25%, 25% 0, 75% 0, 75% 25%, 100% 25%, 100% 75%, 75% 75%, 75% 100%, 25% 100%, 25% 75%, 0 75%);
+  }
+
+  .pixel-star {
+    @apply w-4 h-4 bg-ut-yellow relative inline-block mx-1;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  }
+}
+
+/* Star Background Animation */
+#stars-canvas {
+  @apply fixed inset-0 w-full h-full -z-10 pointer-events-none;
+}
+
+/* Timeline Styles */
+.timeline-container {
+  @apply relative w-full flex items-center justify-between px-4 py-8 overflow-x-auto;
+}
+
+.timeline-track {
+  @apply absolute top-1/2 left-0 w-full h-1 bg-white/20 -translate-y-1/2 z-0;
+}
+
+.timeline-progress {
+  @apply absolute top-1/2 left-0 h-1 bg-ut-cyan -translate-y-1/2 z-10 transition-all duration-1000;
+}
+
+.timeline-node {
+  @apply relative z-20 flex flex-col items-center gap-2 min-w-[120px];
+}
+
+.timeline-dot {
+  @apply w-6 h-6 rounded-full bg-black border-4 border-white transition-all duration-300;
+}
+
+.timeline-node:hover .timeline-dot {
+  @apply border-ut-cyan scale-125 shadow-[0_0_15px_rgba(0,242,255,0.8)];
+}
+
+/* Responsive Dialogs */
+.rpg-dialog-container {
+  @apply w-full max-w-4xl mx-auto px-4;
+}
+
+/* Card Styles */
+.ygo-card {
+  @apply relative w-48 h-72 bg-[#a08060] border-4 border-[#403020] rounded-sm p-2 shadow-xl overflow-hidden;
+  background-image: linear-gradient(45deg, rgba(0,0,0,0.1) 25%, transparent 25%, transparent 50%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.1) 75%, transparent 75%, transparent);
+  background-size: 4px 4px;
+}
+
+/* TV Static Effect */
+.tv-static {
+  background: repeating-radial-gradient(#000 0 0.0001%,#fff 0 0.0002%) 50% 0/2500px 2500px,
+              repeating-conic-gradient(#000 0 0.0001%,#fff 0 0.0002%) 50% 50%/2500px 2500px;
+  background-blend-mode: difference;
+  animation: static 0.2s infinite alternate;
+  opacity: 0.05;
+}
+
+@keyframes static {
+  100% { background-position: 50% 0, 51% 50%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-ut-orange) transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--color-ut-orange);
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--color-ut-red);
+}
