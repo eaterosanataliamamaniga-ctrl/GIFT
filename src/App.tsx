@@ -28,6 +28,7 @@ import {
 // 1. Pon tus archivos .mp3 en la carpeta 'public' de tu proyecto.
 // 2. Cambia el 'url' de abajo por '/tu-archivo.mp3'.
 const PLAYLIST = [
+    { title: "Deltarune - Don't Forget", url: "/public/" },
   { title: "Deltarune - My Castle Town", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" },
   { title: "Undertale - Fallen Down", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" },
   { title: "Deltarune - Field of Hopes and Dreams", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" },
